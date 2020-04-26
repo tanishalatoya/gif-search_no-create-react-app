@@ -6,6 +6,7 @@ const GifList = props => {
   const allGifs = props.gifs.map(gif => {
     return <Gif 
       url={gif.images.fixed_height.url}
+      key={gif.id}
       />
 
   })
