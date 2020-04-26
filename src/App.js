@@ -22,6 +22,13 @@ export default class App extends Component {
       .catch(error => console.log('Error in fetching and parsing data', error))
   }
 
+  performSearch = (query) => {
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=dc6zaTOxFJmzC`)
+    .then(response => response.json())
+    .then(data => this.setState({ gifs: [...data.data] }))
+    .catch(error => console.log('Error in fetching and parsing data', error))
+  }
+
   //Using axios... no need to parse the response and has higher browser compatiblity
 
   // componentDidMount() {
@@ -42,7 +49,7 @@ export default class App extends Component {
         <div className="main-header">
           <div className="inner">
             <h1 className="main-title">GifSearch</h1>
-            <SearchForm />      
+            <SearchForm performSearch={this.performSearch} />      
           </div>   
         </div>    
         <div className="main-content">
